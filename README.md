@@ -31,17 +31,18 @@ maturin develop --release
 ```
 # GlycoShape Database Preparation
 
-Re-Glyco expects a GlycoShape database directory at `config.data_dir`. The `dummy_database` directory in this repo is only for quick local smoke tests.
+Re-Glyco expects a GlycoShape database directory at the `data_dir` variable in `config.py`. The `dummy_database` directory in this repo is only for quick local smoke tests.
 
 ## Step 1 (detailed): Confirm prerequisites and local paths
 
 1. **Data sources and access**
-   - Ensure you can access the GAP (GlycanAnalysisPipeline) repository and the GlycoShape repository.
+   - Ensure you can access the GAP (GlycanAnalysisPipeline) repository: https://github.com/Ojas-Singh/GlycanAnalysisPipeline
+   - Ensure you can access the GlycoShape repository: https://github.com/Ojas-Singh/GlycoShape
    - Verify you can open their README files and the database-related scripts before proceeding.
 2. **Plan the local database root directory**
    - Choose an absolute path for the final GlycoShape database root directory.
    - Confirm there is enough disk space for all glycan data, cluster files, and outputs.
-   - Make sure the directory is readable/writable and its path will remain stable.
+   - Make sure the directory is readable/writable and its path will remain stable (you will set `data_dir` in `config.py` to this path).
 3. **Prepare your custom IUPAC glycan list**
    - Create a plain-text list with one IUPAC glycan per line.
    - Keep naming consistent with GAP/GlycoShape conventions and avoid extra whitespace.
@@ -60,7 +61,7 @@ Once all items above are ready, proceed to the next steps.
 - Configure and run GAP to generate intermediate/output data.
 - Run the GlycoShape `DB_scripts` to build the database structure.
 - Ensure the database root contains `GLYCOSHAPE.json`, `GLYCAN_TYPE.json`, and glycan folders (use `dummy_database` as a reference).
-- Update `config.py` to point `data_dir` to the database root (absolute path with trailing slash).
+- Update `config.py` to point `data_dir` to the database root (absolute path **ending with a trailing slash**; the code concatenates filenames directly).
 - Validate via the API (first with an existing glycan, then with a custom glycan).
 - If validation fails, fix missing files or directory names to match the expected structure.
 
@@ -107,6 +108,5 @@ Callum M Ives and Ojas Singh et al. Restoring Protein Glycosylation with GlycoSh
 - CLI interface
 - Density fitting
 - Fitness function with Non-bonded interaction.
-
 
 
