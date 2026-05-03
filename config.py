@@ -1,10 +1,9 @@
 import os
 
 def _ensure_trailing_sep(path: str) -> str:
-    normalized = os.path.normpath(path)
-    if normalized.endswith(os.sep):
-        return normalized
-    return normalized + os.sep
+    if path.endswith(os.sep) or (os.altsep and path.endswith(os.altsep)):
+        return path
+    return path + os.sep
 
 data_dir = _ensure_trailing_sep("dummy_database")
 upload_dir = _ensure_trailing_sep("temp_files")
