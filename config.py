@@ -1,10 +1,14 @@
 import os
 
-data_dir = "dummy_database"
-upload_dir = "temp_files"
+def _ensure_trailing_sep(path: str) -> str:
+    normalized = os.path.normpath(path)
+    if normalized.endswith(os.sep):
+        return normalized
+    return normalized + os.sep
+
+data_dir = _ensure_trailing_sep("dummy_database")
+upload_dir = _ensure_trailing_sep("temp_files")
 domain_name = "https://glycoshape.io"
-data_dir = os.path.join(data_dir, "")
-upload_dir = os.path.join(upload_dir, "")
 N_linked = {"Res":["ASN"],"phi": (-130,-63),"psi":(152,205)}
 O_linked = {"Res":["SER","THR"],"phi": (65,86),"psi":(111,164)}
 C_linked = {"Res":["TYR","TRP"],"phi": (110,150),"psi":(-3,3)}

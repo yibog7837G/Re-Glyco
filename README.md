@@ -61,7 +61,7 @@ Once all items above are ready, proceed to the next steps.
 - Configure and run GAP to generate intermediate/output data.
 - Run the GlycoShape `DB_scripts` to build the database structure.
 - Ensure the database root contains `GLYCOSHAPE.json`, `GLYCAN_TYPE.json`, and glycan folders (use `dummy_database` as a reference).
-- Update `config.py` to point `data_dir` to the database root (absolute path; trailing slash is optional and is normalized).
+- Update `config.py` to point `data_dir` to the database root (absolute path; trailing slash is optional because `config.py` ensures a trailing path separator).
 - Validate via the API (first with an existing glycan, then with a custom glycan).
 - If validation fails, fix missing files or directory names to match the expected structure.
 
@@ -108,4 +108,3 @@ Callum M Ives and Ojas Singh et al. Restoring Protein Glycosylation with GlycoSh
 - CLI interface
 - Density fitting
 - Fitness function with Non-bonded interaction.
-
