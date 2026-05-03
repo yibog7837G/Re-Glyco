@@ -2,7 +2,9 @@ import os
 
 def _ensure_trailing_sep(path: str) -> str:
     normalized = os.path.normpath(path)
-    return normalized.rstrip(os.sep) + os.sep
+    if normalized.endswith(os.sep):
+        return normalized
+    return normalized + os.sep
 
 data_dir = _ensure_trailing_sep("dummy_database")
 upload_dir = _ensure_trailing_sep("temp_files")
