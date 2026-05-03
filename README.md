@@ -29,6 +29,41 @@ cd glycors
 maturin develop --release
 
 ```
+# GlycoShape Database Preparation
+
+Re-Glyco expects a GlycoShape database directory at `config.data_dir`. The `dummy_database` directory in this repo is only for quick local smoke tests.
+
+## Step 1 (detailed): Confirm prerequisites and local paths
+
+1. **Data sources and access**
+   - Ensure you can access the GAP (GlycanAnalysisPipeline) repository and the GlycoShape repository.
+   - Verify you can open their README files and the database-related scripts before proceeding.
+2. **Plan the local database root directory**
+   - Choose an absolute path for the final GlycoShape database root directory.
+   - Confirm there is enough disk space for all glycan data, cluster files, and outputs.
+   - Make sure the directory is readable/writable and its path will remain stable.
+3. **Prepare your custom IUPAC glycan list**
+   - Create a plain-text list with one IUPAC glycan per line.
+   - Keep naming consistent with GAP/GlycoShape conventions and avoid extra whitespace.
+4. **Gather required credentials (if applicable)**
+   - If you plan to let GAP fetch data from GlyTouCan or other services, prepare the required account/API keys.
+   - If you only use local data, confirm this and skip credential setup.
+5. **Readiness check**
+   - GAP + GlycoShape repositories are accessible.
+   - The database root path is final and writable.
+   - The custom IUPAC list is ready.
+   - Credentials are available if you need automated downloads.
+
+Once all items above are ready, proceed to the next steps.
+
+## Next steps (overview)
+- Configure and run GAP to generate intermediate/output data.
+- Run the GlycoShape `DB_scripts` to build the database structure.
+- Ensure the database root contains `GLYCOSHAPE.json`, `GLYCAN_TYPE.json`, and glycan folders (use `dummy_database` as a reference).
+- Update `config.py` to point `data_dir` to the database root (absolute path with trailing slash).
+- Validate via the API (first with an existing glycan, then with a custom glycan).
+- If validation fails, fix missing files or directory names to match the expected structure.
+
 # Running the API 
 
 Modify the config.py to locate the GlycoShape Database directory.
@@ -72,7 +107,6 @@ Callum M Ives and Ojas Singh et al. Restoring Protein Glycosylation with GlycoSh
 - CLI interface
 - Density fitting
 - Fitness function with Non-bonded interaction.
-
 
 
 
