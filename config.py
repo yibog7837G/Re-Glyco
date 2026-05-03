@@ -2,7 +2,8 @@ import os
 
 def _ensure_trailing_sep(path: str) -> str:
     normalized = os.path.normpath(path)
-    if normalized.endswith(os.sep):
+    drive, tail = os.path.splitdrive(normalized)
+    if tail == os.sep:
         return normalized
     return normalized + os.sep
 
